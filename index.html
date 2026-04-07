@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zenith Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="background-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <main class="dashboard-container">
+    <div class="left-panel">
+      <header class="app-header">
+        <h1 class="logo"><div class="logo-icon"></div> Zenith Task</h1>
+      </header>
+      
+      <div class="search-bar">
+        <i class="fa-solid fa-search"></i>
+        <input type="text" placeholder="Search Tasks..." id="search-input" autocomplete="off">
+      </div>
+
+      <nav class="filters">
+        <button class="filter-btn" data-filter="inbox">Inbox</button>
+        <button class="filter-btn active" data-filter="today">Today</button>
+        <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+        <button class="filter-btn" data-filter="projects">Projects</button>
+      </nav>
+
+      <div class="list-header">
+        <h2>Today: <span id="current-date">Wed, Oct 25</span></h2>
+        <span class="font-size-toggle">14pt</span>
+      </div>
+
+      <div class="task-list-wrapper">
+        <ul id="task-list" class="task-list">
+          <!-- Tasks injected via JS -->
+        </ul>
+      </div>
+    </div>
+
+    <aside class="right-panel">
+      <div class="sidebar-section">
+        <h3>Quick Add</h3>
+        <button id="quick-add-btn" class="quick-add-btn"><i class="fa-solid fa-plus"></i> New Task</button>
+      </div>
+
+      <div class="sidebar-section stats-section">
+        <div class="progress-ring-container">
+          <svg class="progress-ring" viewBox="0 0 100 100">
+            <circle class="progress-ring-bg" cx="50" cy="50" r="45"></circle>
+            <circle id="progress-ring-circle" class="progress-ring-circle" cx="50" cy="50" r="45"></circle>
+          </svg>
+          <div class="progress-text">
+            <span class="progress-label">Today:</span>
+            <span id="progress-percentage">0%</span>
+            <span class="progress-sub">Complete</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section categories-section">
+        <h3>Categories</h3>
+        <ul class="category-list">
+          <li class="category-item active">Design</li>
+          <li class="category-item">Marketing</li>
+          <li class="category-item">Personal</li>
+          <li class="category-item">Development</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section upcoming-section">
+        <h3>Upcoming</h3>
+        <div class="upcoming-card">
+          <div class="upcoming-line"></div>
+          <div class="upcoming-details">
+            <h4 id="upcoming-title">Review</h4>
+            <p id="upcoming-desc">App Deployment</p>
+            <span class="upcoming-date">Tomorrow</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+  
+  <!-- Add Task Modal -->
+  <div class="modal-overlay" id="add-modal" style="opacity: 0; pointer-events: none; transition: opacity 0.3s ease;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add Task</h2>
+        <button id="close-modal"><i class="fa-solid fa-times"></i></button>
+      </div>
+      <form id="add-task-form">
+        <input type="text" id="new-task-title" placeholder="Task Title" required>
+        <input type="text" id="new-task-desc" placeholder="Task Description">
+        <div class="form-row">
+          <select id="new-task-priority">
+            <option value="high">High Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="low">Low Priority</option>
+          </select>
+          <input type="text" id="new-task-tag" placeholder="Tag (e.g. #design)">
+          <input type="time" id="new-task-time" value="12:00">
+        </div>
+        <button type="submit" class="submit-btn">Save Task</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
